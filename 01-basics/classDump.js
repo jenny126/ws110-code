@@ -6,6 +6,6 @@ class Person {
   }
 }
 
-var p1 = new Person('ccc', 50)
+var p1 = new Person('ccc', 52)
 console.log(p1)
 console.log(JSON.stringify(p1))

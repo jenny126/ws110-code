@@ -16,7 +16,7 @@ app.listen = async function (port) {
       headers:new Map()
     }
     for (let middle of app.middles) {
-      if (middle(ctx)) break
+      if (middlectx()) break
     }
     if (ctx.body != null) {
       request.respond({
