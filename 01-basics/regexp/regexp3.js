@@ -1,4 +1,4 @@
-var r = /[0-9]\.([0-9]+)/g
+var r = /(\d+)\.(\d+)/g
 var text = `pi=3.14359 e=2.71828`
 var m = text.match(r)
 console.log('m=', m)
