@@ -23,7 +23,7 @@ error: Uncaught TypeError: Cannot set properties of undefined (setting 'name')
 
 這是因為當你用  fset=p.set 取得函數時，取得的只是函數，但並不會把 p 也綁進來，所以呼叫 fset 時， this 根本不存在。
 
-```
+```js
 let fset = p.set // p.set('ccc')
 fset('ccc')
 ```
