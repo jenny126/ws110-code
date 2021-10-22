@@ -3,8 +3,8 @@ import { Application } from "https://deno.land/x/oak/mod.ts";
 const app = new Application();
 
 // Logger
-app.use(async (ctx, next) => {
-  await next();
+app.use(async (ctx, next) => { //裡面有await，外面就要有async
+  await next(); //讓下一個中間鍵可以執行
   const rt = ctx.response.headers.get("X-Response-Time");
   console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
 });

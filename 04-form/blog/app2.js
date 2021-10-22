@@ -32,7 +32,7 @@ async function add(ctx) {
 async function show(ctx) {
   const id = ctx.params.id;
   const post = posts[id];
-  if (!post) ctx.throw(404, 'invalid post id');
+  if (!post) ctx.throw(404, 'invalid post id'); //彈出無法顯示
   ctx.response.body = await render.show(post);
 }
 
@@ -48,7 +48,7 @@ async function create(ctx) {
     const id = posts.push(post) - 1;
     post.created_at = new Date();
     post.id = id;
-    ctx.response.redirect('/');
+    ctx.response.redirect('/'); //redirect:指向另外一個網頁
   }
 }
 

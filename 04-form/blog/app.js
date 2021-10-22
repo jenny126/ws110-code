@@ -9,9 +9,9 @@ const posts = [
 const router = new Router();
 
 router.get('/', list)
-  .get('/post/new', add)
-  .get('/post/:id', show)
-  .post('/post', create);
+  .get('/post/new', add) //post new 觸發 add 
+  .get('/post/:id', show) // post:id 觸發show (顯示)
+  .post('/post', create); //按下create按鈕出觸發
 
 const app = new Application();
 app.use(router.routes());

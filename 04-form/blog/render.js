@@ -84,14 +84,14 @@ export function list(posts) {
   return layout('Posts', content)
 }
 
-export function newPost() {
+export function newPost() {  //觸發顯示表單
   return layout('New Post', `
   <h1>New Post</h1>
   <p>Create a new post.</p>
-  <form action="/post" method="post">
+  <form action="/post" method="post"> <!-- action 只能放在from --!>
     <p><input type="text" placeholder="Title" name="title"></p>
     <p><textarea placeholder="Contents" name="body"></textarea></p>
-    <p><input type="submit" value="Create"></p>
+    <p><input type="submit" value="Create"></p> <!-- 回應app 和 app1的Create --!>
   </form>
   `)
 }
