@@ -99,6 +99,6 @@ export function newPost() {  //觸發顯示表單
 export function show(post) {
   return layout(post.title, `
     <h1>${post.title}</h1>
-    <p>${post.body}</p>
+    <pre>${post.body}</pre>
   `)
 }

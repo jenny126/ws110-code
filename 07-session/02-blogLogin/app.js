@@ -1,7 +1,7 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
-import { Session } from "https://deno.land/x/session@1.1.0/mod.ts";
+import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
 db.query("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, title TEXT, body TEXT)");
@@ -12,21 +12,18 @@ const userMap = {
 }
 
 const router = new Router();
+const session = new Session();
 
-router.get('/', list)
-  .get('/login', loginUi)
-  .post('/login', login)
-  .get('/logout', logout)
+router.get('/', session.initMiddleware(), list)
+  .get('/login',loginUi)
+  .post('/login', session.initMiddleware(), login)
+  .get('/logout', session.initMiddleware(),logout)
   .get('/post/new', add)
   .get('/post/:id', show)
-  .post('/post', create)
-
-const session = new Session({ framework: "oak" });
-await session.init();
+  .post('/post', session.initMiddleware(),create)
 
 const app = new Application();
 
-app.use(session.use()(session));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
@@ -76,7 +73,9 @@ async function logout(ctx) {
 async function list(ctx) {
   let posts = query("SELECT id, username, title, body FROM posts")
   console.log('list:posts=', posts)
-  ctx.response.body = await render.list(posts, await ctx.state.session.get('user'));
+  let user = await ctx.state.session.get('user')
+  console.log('user=', user)
+  ctx.response.body = await render.list(posts, user);
 }
 
 async function add(ctx) {
