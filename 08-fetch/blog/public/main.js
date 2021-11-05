@@ -1,20 +1,22 @@
+// public資料夾裡面的東西都是前端
+
 var R = {}
 
-window.onhashchange = async function () {
+window.onhashchange = async function () {  //onhashchang #後有任何改變被觸發  改變讀取內容
   var r
   var tokens = window.location.hash.split('/')
   console.log('tokens=', tokens)
   switch (tokens[0]) {
     case '#show':
       r = await window.fetch('/post/' + tokens[1])
-      let post = await r.json()
-      R.show(post)
+      let post = await r.json() //轉成物件丟回來
+      R.show(post) //R代表整個模組
       break
     case '#new':
       R.new()
       break
     default:
-      r = await window.fetch('/list')
+      r = await window.fetch('/list') //和伺服器要
       let posts = await r.json()
       R.list(posts)
       break
@@ -25,7 +27,7 @@ window.onload = function () {
   window.onhashchange()
 }
 
-R.layout = function (title, content) {
+R.layout = function (title, content) { 
   document.querySelector('title').innerText = title
   document.querySelector('#content').innerHTML = content
 }
@@ -74,8 +76,8 @@ R.savePost = async function () {
   let title = document.querySelector('#title').value
   let body = document.querySelector('#body').value
   let r = await window.fetch('/post', {
-    body: JSON.stringify({title: title, body: body}),
-    method: 'POST',
+    body: JSON.stringify({title: title, body: body}),  //取得資料後轉成js
+    method: 'POST', //利用fatch做mothod=post
     headers: {
       'Content-Type': 'application/json'
     }

@@ -34,7 +34,7 @@ async function show (ctx) {
   const id = ctx.params.id
   const post = posts[id]
   if (!post) ctx.throw(404, 'invalid post id')
-  ctx.response.type = 'application/json'
+  ctx.response.type = 'application/json' //告訴他我傳的是js
   ctx.response.body = post
 }
 
@@ -43,13 +43,13 @@ async function create (ctx) {
   const body = ctx.request.body(); // content type automatically detected
   console.log('body = ', body)
   if (body.type === "json") {
-    let post = await body.value;
+    let post = await body.value; //get
     const id = posts.push(post) - 1
     console.log('create:id=>', id)
     console.log('create:get=>', post)
     post.created_at = new Date()
     post.id = id
-    ctx.response.body = post
+    ctx.response.body = post  //收到傳送的東東，存進去   這裡不response也沒關係，但這是為了讓他們覺得有伺服器有塞東西回來//若是這行刪除，不傳success就會傳回404
     console.log('create:save=>', post)
   }
 }
