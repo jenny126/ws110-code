@@ -12,4 +12,9 @@ for await (const req of s) {
     proto=${req.proto}
     headers=${JSON.stringify(Object.fromEntries(req.headers), null, 2)}
     `});
+    // req.method 取得方法  [GET](https://notfalse.net/43/http-request-method#-standardized-method)
+    // req.url 取得網址 >>http://localhost:8000/ 但其實改變網頁框的網址也會導致這裡的部份的輸出結果改變
+    // req.proto 取得協定(ex HTTP) >>HTTP
+    //req.headers 印出表頭
+
 }

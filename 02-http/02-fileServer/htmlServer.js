@@ -8,6 +8,6 @@ for await (const req of s) {
     req.respond({ body: text })
   } catch (error) {
     console.log('error=', error)
-    req.respond({ status:404 })
+    req.respond({ status:404 })//抓到錯誤傳回404
   }
 }

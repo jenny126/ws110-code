@@ -4,7 +4,7 @@ const app = new Application();
 
 app.use((ctx) => {
   console.log('url=', ctx.request.url)
-  ctx.response.redirect('https://tw.youtube.com')
+  ctx.response.redirect('https://tw.youtube.com') //進入就轉址到youtube
 });
 
 console.log('start at : http://127.0.0.1:8000')

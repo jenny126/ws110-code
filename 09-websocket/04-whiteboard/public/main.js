@@ -116,7 +116,7 @@
     return function() {
       var time = new Date().getTime();
 
-      if ((time - previousCall) >= delay) {
+      if ((time - previousCall) >= delay) {  //限制滑鼠每秒的移動次數
         previousCall = time;
         callback.apply(null, arguments);
       }

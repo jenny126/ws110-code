@@ -4,8 +4,8 @@ const app = new Application();
 
 var count = 0;
 function hello(ctx) {
-  console.log(++count, "times hello executed!");
-  console.log('href=', ctx.request.url.href)
+  console.log(++count, "times hello executed!");//++count是計算第幾次訪問
+  console.log('href=', ctx.request.url.href)//此行為取得完整的網址
   ctx.response.body = "Hello World!";
 }
 

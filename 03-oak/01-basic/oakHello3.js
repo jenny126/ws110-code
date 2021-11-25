@@ -4,7 +4,7 @@ const app = new Application();
 
 var count = 0;
 function hello(ctx) {
-  console.log(++count, "times hello executed!");
+  console.log(++count, "times hello executed!");//++count是計算第幾次訪問
   ctx.response.body = "Hello World!";
 }
 

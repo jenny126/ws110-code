@@ -38,7 +38,7 @@ async function craw(urlList, urlMap) {
       for (let surl of urls) {
         var absurl = surl
         if (surl.indexOf("//")<0) { // 是相對路徑
-           absurl = (new URL(surl, url)).href
+           absurl = (new URL(surl, url)).href   //處理相對路徑 這裡進行的是合成網址的動作
            // console.log('absurl=', absurl)
         }
         if (urlMap[absurl] == null) {
