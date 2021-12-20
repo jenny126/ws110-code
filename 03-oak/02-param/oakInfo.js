@@ -4,8 +4,8 @@ const app = new Application();
 
 app.use((ctx) => {
   console.log('ctx=', ctx)
-  console.log('ctx.request=', ctx.request)
-  console.log('url=', ctx.request.url)
+  console.log('ctx.request=', ctx.request) //取得請求
+  console.log('url=', ctx.request.url)//取請求內的網址
   ctx.response.body = `
     method=${ctx.request.method}
     url=${ctx.request.url.href}
@@ -13,8 +13,8 @@ app.use((ctx) => {
     hostname=${ctx.request.url.hostname}
     pathname=${ctx.request.url.pathname}
     hash=${ctx.request.url.hash}
-    search=${ctx.request.url.search}
-    searchParams=${ctx.request.url.searchParams}
+    search=${ctx.request.url.search}  
+    searchParams=${ctx.request.url.searchParams}  
     searchParams.get('name')=${ctx.request.url.searchParams.get('name')}
     headers=${JSON.stringify(Object.fromEntries(ctx.request.headers))}
   `;

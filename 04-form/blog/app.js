@@ -1,5 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import * as render from './render.js'
+import * as render from './render.js' //* as 引入全部並給他一個名子
 
 const posts = [
   {id:0, title:'aaa', body:'aaaaa'},
@@ -11,7 +11,7 @@ const router = new Router();
 router.get('/', list)
   .get('/post/new', add) //post new 觸發 add 
   .get('/post/:id', show) // post:id 觸發show (顯示)
-  .post('/post', create); //按下create按鈕出觸發
+  .post('/post', create); //按下create按鈕觸發
 
 const app = new Application();
 app.use(router.routes());

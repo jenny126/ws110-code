@@ -93,7 +93,10 @@ export function newPost() {  //觸發顯示表單
     <p><textarea placeholder="Contents" name="body"></textarea></p>
     <p><input type="submit" value="Create"></p> <!-- 回應app 和 app1的Create --!>
   </form>
-  `)
+  `)//submit按下的動作會被寫在action內，按下時也會呼叫action，且使用指定的method
+  //get的參數會放在網址裡面傳遞
+  //post的參數會放在內文裡面傳遞，回傳的東西不合適放在網址裡就會用post傳遞
+  //這個部分有安全性的問題，不過其實整個http都不安全，https比較安全
 }
 
 export function show(post) {

@@ -25,10 +25,10 @@ router
     }
   })
   .get("/root/(.*)", async (context) => {
-    // console.log('context=', context)
-    let wpath = context.params[0]
+    // console.log('context=', context) 
+    let wpath = context.params[0]//他再比對(.*)
     console.log('wpath=', wpath)
-    await send(context, wpath, {
+    await send(context, wpath, { //send的功能:抓住那個檔案，傳回去
       root: Deno.cwd()+"/public/",
       index: "index.html",
     })

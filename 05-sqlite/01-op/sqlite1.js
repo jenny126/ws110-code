@@ -15,4 +15,4 @@ for (const [id, name] of db.query("SELECT id, name FROM people"))
   console.log(id, name);
 
 // Close connection
-db.close();
+db.close();//關閉以確保他的快取有儲存到

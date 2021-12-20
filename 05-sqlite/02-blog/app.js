@@ -2,7 +2,7 @@ import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 
-const db = new DB("blog.db");
+const db = new DB("blog.db"); //在剛開始就創建資料庫
 db.query("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT)");
 
 const router = new Router();
@@ -25,7 +25,7 @@ function query(sql) {
 }
 
 async function list(ctx) {
-  let posts = query("SELECT id, title, body FROM posts")
+  let posts = query("SELECT id, title, body FROM posts")//在list把資料取出來放入list  加上WHERE來設定條件(EX:WHERE id=${pid})
   console.log('list:posts=', posts)
   ctx.response.body = await render.list(posts);
 }
@@ -52,7 +52,7 @@ async function create(ctx) {
       post[key] = value
     }
     console.log('create:post=', post)
-    db.query("INSERT INTO posts (title, body) VALUES (?, ?)", [post.title, post.body]);
+    db.query("INSERT INTO posts (title, body) VALUES (?, ?)", [post.title, post.body]); //問號指向後面的參數
     ctx.response.redirect('/');
   }
 }
